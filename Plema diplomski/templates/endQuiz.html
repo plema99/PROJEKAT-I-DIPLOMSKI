@@ -1,0 +1,13 @@
+<link href= "{{ url_for('static',filename='styles/endQuiz.css') }}" rel="stylesheet" type="text/css" />
+<table>
+    <tr>
+        <td>
+            Vas Ostvareni Rezultat je {{score}}/{{numQuest}}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <a href="{{ url_for('main.index') }}"><button  class="submit">Pocetna Stranica</button></a>
+        </td>
+    </tr>
+</table>

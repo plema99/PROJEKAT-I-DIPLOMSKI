@@ -1,0 +1,57 @@
+body {
+   background-image: url("https://cutewallpaper.org/26/any-question-wallpaper-hd/free-download-question-background-slow-loop-stock-video-11520251-hd-stock-footage-1920x1080-for-your-desktop-mobile-amp-tablet-explore-46-wallpaper-questions-yellow-wallpaper-questions-and-answers-question-mark.jpeg");
+     background-size: auto;
+}
+
+table {
+    background-color: snow;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    width: 50%;
+}
+
+h1 {
+    font-family: 'Maiandra GD';
+    color: snow;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 70px;
+}
+
+td, tr {
+    font-family: 'Maiandra GD';
+    font-size: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+input {
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+a {
+    color: #1cc49d;
+}
+
+h3 {
+    font-family: 'Maiandra GD';
+    font-size: 30px;
+    text-align: center;
+    vertical-align: middle;
+    color: #ff1a1a
+}
+
+input.submit {
+    color: #1cc49d;
+    background-color: #1b2f31;
+    border-radius: 50px;
+    justify-content: center;
+    align-items: center;
+    height: 3em;
+    width: 8em;
+    font-size: large;
+    font-weight: 600;
+}

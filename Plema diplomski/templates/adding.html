@@ -1,0 +1,72 @@
+<link href= "{{ url_for('static',filename='styles/adding.css') }}" rel="stylesheet" type="text/css" />
+<h1>Dodaj pitanje</h1>
+<form action="{{ url_for('main.add') }}" method="post">
+    <table>
+        <tr>
+            <td>Tekst Pitanja:</td>
+            <td><input required type="text" name="q_text" /></td>
+        </tr>
+        <tr>
+              <td>Izaberite Oblast:</td>
+             <td>
+                <input checked type="radio" name="category" value="LOZINKE">
+                <label>Lozinke</label>
+                <input type="radio" name="category" value="VISEFAKTORSKA">
+                <label>Visefaktorska Autentifikacija</label>
+                 <input checked type="radio" name="category" value="MALTRETIRANJE">
+                <label>Online Maltretiranje</label>
+                <input type="radio" name="category" value="KRADJA">
+                <label>Kradja Tudjeg Naloga</label>
+                 <input type="radio" name="category" value="LICNI">
+                <label>Licni Podaci</label>
+            </td>
+        </tr>
+         <tr>
+            <td>Opcija 1:</td>
+            <td><input required type="text" name="opt1" /></td>
+        </tr>
+        <tr>
+            <td>Opcija 2:</td>
+            <td><input required type="text" name="opt2" /></td>
+        </tr>
+         <tr>
+            <td>Opcija 3:</td>
+            <td><input  type="text" name="opt3" /></td>
+        </tr>
+         <tr>
+            <td>Opcija 4:</td>
+            <td><input  type="text" name="opt4" /></td>
+        </tr>
+          <tr>
+            <td>Opcija 5:</td>
+            <td><input type="text" name="opt5" /></td>
+        </tr>
+          <tr>
+            <td>Opcija 6:</td>
+            <td><input  type="text" name="opt6" /></td>
+        </tr>
+        <tr>
+            <td>Tacni Odgovori:</td>
+            <td>
+                <input type="checkbox"  name="answer" value="0">
+                <label >Opcija 1</label><br>
+                <input type="checkbox"  name="answer" value="1">
+                <label >Opcija 2</label><br>
+                <input type="checkbox"  name="answer" value="2">
+                <label >Opcija 3</label><br>
+                <input type="checkbox"  name="answer" value="3">
+                <label >Opcija 4</label><br>
+                <input type="checkbox"  name="answer" value="4">
+                <label >Opcija 5</label><br>
+                <input type="checkbox"  name="answer" value="5">
+                <label >Opcija 6</label><br>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" class="submit" value="Dodaj Pitanje"/>
+            </td>
+         
+        </tr>
+    </table>
+</form>

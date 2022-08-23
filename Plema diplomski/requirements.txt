@@ -1,0 +1,8 @@
+flask
+flask_sqlalchemy
+python-decouple
+Flask-Session
+marshmallow
+flask_marshmallow
+jsonpickle
+Jinja2
