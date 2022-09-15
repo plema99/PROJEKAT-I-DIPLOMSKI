@@ -1,20 +1,21 @@
 <link href= "{{ url_for('static',filename='styles/question.css') }}" rel="stylesheet" type="text/css" />
   <body>
     <div class="container">
-      <h1> {{ question.text }} :</h1>
-      <form action="{{ url_for('main.explanation') }}" method="post">
-      {% for item in options %}
+      <h1> Edukativni Tekst : {{ explanation }} </h1><br> <br>
+      <h1> Tacni Odgovori :</h1>
+      <form action="{{ url_for('main.nextQuestion') }}" method="post">
+      {% for item in correct_answers %}
             <tr>
                 <td>
                     <div class="group">
-                        <input type="checkbox" id="{{item}}" name="answer" value="{{loop.index0}}"/>
+                        <input type="checkbox" checked readonly id="{{item}}" name="answer" value="{{loop.index0}}"/>
                         <label for="{{item}}">{{item}}</label>
                     </div>
                 </td>  
             </tr>               
       {% endfor %}
       <div>
-        <input type="submit" class="submit" value="Odgovori"/>
+        <input type="submit" class="submit" value="Sledece Pitanje"/>
       </div>
       </form>
     </div>

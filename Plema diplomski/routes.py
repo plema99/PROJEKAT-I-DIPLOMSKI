@@ -22,11 +22,12 @@ def create():
 @main.route("/startQuiz",  methods=['POST'])
 def startQuiz():
     category = request.form["category"]
-    session["counting"] = 0
+
 
     questions = Question.query.filter_by(category=category)
     schema = QuestionSchema(many=True)
 
+    session["correctAnswers"] = 0
     session["questions"] = schema.dump(questions)
     question = session["questions"][0]
 
@@ -36,7 +37,7 @@ def startQuiz():
         "question": question,
         "options": options
     }
-
+    session["counting"] = 0
     return render_template("question.html", **context)
 
 def create_option_list(question):
@@ -52,21 +53,51 @@ def create_option_list(question):
         options.append(question["option6"])
     return options
 
-@main.route("/nextQuestion", methods=['GET', 'POST'])
-def nextQuestion():
+@main.route("/explanation", methods=['GET', 'POST'])
+def explanation():
     user_answers = request.form.getlist("answer")
-    number_of_questions_answered = session["counting"] + 1
-    if len(session["questions"]) == number_of_questions_answered:
-        return redirect(url_for('main.endQuiz'))
-
     current_question = session["questions"][session["counting"]]
-    session["correctAnswers"] = 0
-
     question_object = Question.query.get(current_question["id"])
     answer_list = question_object.get_answers()
 
+    correct_answers = get_list_string(question_object)
+
     if user_answers == answer_list:
         session["correctAnswers"] += 1
+
+    context = {
+        "explanation": question_object.explanation,
+        "correct_answers": correct_answers
+    }
+
+    return render_template("explanation.html", **context)
+
+def get_list_string(question_object):
+    answer_list = question_object.get_answers()
+    list_answer_string = []
+    if "0" in answer_list:
+        list_answer_string.append(question_object.option1)
+    if "1" in answer_list:
+        list_answer_string.append(question_object.option2)
+    if "2" in answer_list:
+        list_answer_string.append(question_object.option3)
+    if "3" in answer_list:
+        list_answer_string.append(question_object.option4)
+    if "4" in answer_list:
+        list_answer_string.append(question_object.option5)
+    if "5" in answer_list:
+        list_answer_string.append(question_object.option6)
+
+    return list_answer_string
+
+
+
+@main.route("/nextQuestion", methods=['GET', 'POST'])
+def nextQuestion():
+
+    number_of_questions_answered = session["counting"] + 1
+    if len(session["questions"]) == number_of_questions_answered:
+        return redirect(url_for('main.endQuiz'))
 
     session["counting"] += 1
 
@@ -111,6 +142,7 @@ def add():
         question = Question(text=question_text, category=category)
         question.option1 = option1
         question.option2 = option2
+        question.explanation = request.form["explanation"]
 
         if(option3 != ""):
             question.option3 = option3

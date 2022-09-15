@@ -6,6 +6,7 @@ import json
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(50))
+    explanation = db.Column(db.String(1000))
     category = db.Column(db.String(50))
     option1 = db.Column(db.String(50))
     option1 = db.Column(db.String(50))
@@ -29,6 +30,7 @@ class Question(db.Model):
 class QuestionSchema(ma.Schema):
     id = fields.Number()
     text = fields.Str()
+    explanation = fields.Str()
     category = fields.Str()
     option1 = fields.Str()
     option1 = fields.Str()

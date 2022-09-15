@@ -55,3 +55,7 @@ input.submit {
     font-size: large;
     font-weight: 600;
 }
+
+input{
+font-size: 25px;
+}
