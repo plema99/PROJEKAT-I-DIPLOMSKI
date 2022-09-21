@@ -5,7 +5,7 @@ from model.models import Question, QuestionSchema
 from config import db
 
 
-main = Blueprint("main", __name__) #kao kontroler da pravis, a dole cu akcije
+main = Blueprint("main", __name__) #kao kontroler da pravim, a dole cu akcije
 
 
 @main.route("/")
