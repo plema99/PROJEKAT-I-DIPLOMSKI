@@ -16,6 +16,7 @@ class Question(db.Model):
     option5 = db.Column(db.String(50))
     option6 = db.Column(db.String(50))
     answers = db.Column(db.String(50))
+    image = db.Column(db.String(50), default = '')
     #backref dodajem novu kolonu u tabelu Option
 
     def toJSON(self):
@@ -23,7 +24,8 @@ class Question(db.Model):
                           sort_keys=True, indent=4)
 
     def get_answers(self):
-        answer_list = list(self.answers)
+        answer_list = self.answers
+        answer_list = answer_list.split(",")
         return answer_list
 
 
@@ -40,3 +42,4 @@ class QuestionSchema(ma.Schema):
     option5 = fields.Str()
     option6 = fields.Str()
     answers = fields.Str()
+    image = fields.Str()

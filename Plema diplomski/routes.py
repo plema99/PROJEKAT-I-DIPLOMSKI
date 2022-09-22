@@ -28,6 +28,7 @@ def startQuiz():
     schema = QuestionSchema(many=True)
 
     session["correctAnswers"] = 0
+    session["questions"] = None
     session["questions"] = schema.dump(questions)
     question = session["questions"][0]
 
@@ -136,12 +137,14 @@ def add():
         option4 = request.form["opt4"]
         option5 = request.form["opt5"]
         option6 = request.form["opt6"]
+        image = request.form["image"]
 
         answers = request.form.getlist("answer")
 
         question = Question(text=question_text, category=category)
         question.option1 = option1
         question.option2 = option2
+        question.image = image
         question.explanation = request.form["explanation"]
 
         if(option3 != ""):
@@ -159,7 +162,6 @@ def add():
         db.session.add(question)
         db.session.commit()
         return render_template("adding.html")
-
 
 
 
