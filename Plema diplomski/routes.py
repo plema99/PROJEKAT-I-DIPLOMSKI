@@ -23,7 +23,6 @@ def create():
 def startQuiz():
     category = request.form["category"]
 
-
     questions = Question.query.filter_by(category=category)
     schema = QuestionSchema(many=True)
 
