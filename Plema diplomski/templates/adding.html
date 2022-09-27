@@ -3,22 +3,22 @@
 <form action="{{ url_for('main.add') }}" method="post">
     <table>
         <tr>
-            <td>Tekst Pitanja:</td>
+            <td>Tekst pitanja:</td>
             <td><input required type="text" name="q_text" /></td>
         </tr>
         <tr>
-              <td>Izaberite Oblast:</td>
+              <td>Izaberite oblast:</td>
              <td>
                 <input checked type="radio" name="category" value="LOZINKE">
                 <label>Lozinke</label>
                 <input type="radio" name="category" value="VISEFAKTORSKA">
-                <label>Visefaktorska Autentifikacija</label>
+                <label>Visefaktorska autentifikacija</label>
                  <input checked type="radio" name="category" value="MALTRETIRANJE">
-                <label>Online Maltretiranje</label>
+                <label>Online maltretiranje</label>
                 <input type="radio" name="category" value="KRADJA">
-                <label>Kradja Tudjeg Naloga</label>
+                <label>Kradja tudjeg naloga</label>
                  <input type="radio" name="category" value="LICNI">
-                <label>Licni Podaci</label>
+                <label>Licni podaci</label>
             </td>
         </tr>
          <tr>
@@ -46,7 +46,7 @@
             <td><input  type="text" name="opt6" /></td>
         </tr>
         <tr>
-            <td>Tacni Odgovori:</td>
+            <td>Tacni odgovori:</td>
             <td>
                 <input type="checkbox"  name="answer" value="0">
                 <label >Opcija 1</label><br>
@@ -71,7 +71,7 @@
             <td><input type="file" class="image" name="image" /></td>
         </tr>
             <td colspan="2">
-                <input type="submit" class="submit" value="Dodaj Pitanje"/>
+                <input type="submit" class="submit" value="Dodaj pitanje"/>
             </td>
          
         </tr>

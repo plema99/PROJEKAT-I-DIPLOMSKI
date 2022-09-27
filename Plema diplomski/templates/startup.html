@@ -2,6 +2,9 @@
 <link href= "{{ url_for('static',filename='styles/startup.css') }}" rel="stylesheet" type="text/css" />
 
   <h1>Dobrodosli u upitnik</h1>
+  {% if errormsg != '' %}
+<p class="error">{{errormsg}}</p>
+  {% endif %}
   <form action="{{ url_for('main.startQuiz') }}" method="post">
 
     <div class="container">
@@ -14,35 +17,35 @@
 
           <div class="option">
             <input type="radio" class="radio" id="visefakt" name="category" value="VISEFAKTORSKA"/>
-            <label for="visefakt">Vise Faktorska Autentifikacija</label>
+            <label for="visefakt">Visefaktorska autentifikacija</label>
           </div>
 
           <div class="option">
             <input type="radio" class="radio" id="maltret" name="category" value="MALTRETIRANJE"/>
-            <label for="maltret" >Onlajn Maltretiranje</label>
+            <label for="maltret" >Onlajn maltretiranje</label>
           </div>
 
           <div class="option">
             <input type="radio" class="radio" id="kradja" name="category" value="KRADJA"/>
-            <label for="kradja">Kradja Tudjeg Identiteta</label>
+            <label for="kradja">Kradja tudjeg identiteta</label>
           </div>
 
 
           <div class="option">
             <input type="radio" class="radio" id="licni" name="category" value="LICNI"/>
-            <label for="licni">Licni Podaci</label>
+            <label for="licni">Licni podaci</label>
           </div>
          </div>
 
 
         <div class="selected">
-          Izaberite Oblast
+          Izaberite oblast
         </div>
       </div>
     </div>
     <div>
       <form action="{{ url_for('main.startQuiz') }}" method="post">
-        <input type="submit" class="submit" value="Zapocni Kviz"/>
+        <input type="submit" class="submit" value="Zapocni kviz"/>
       </form>          
      </div>
     </form>

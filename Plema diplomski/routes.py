@@ -18,11 +18,14 @@ def create():
     db.create_all()
     return render_template("startup.html")
 
-
 @main.route("/startQuiz",  methods=['POST'])
 def startQuiz():
-    category = request.form["category"]
 
+    if "category" not in request.form:
+        error_msg = "Molimo vas odaberite oblast"
+        return render_template("startup.html", errormsg=error_msg)
+
+    category = request.form["category"]
     questions = Question.query.filter_by(category=category)
     schema = QuestionSchema(many=True)
 
@@ -30,12 +33,15 @@ def startQuiz():
     session["questions"] = None
     session["questions"] = schema.dump(questions)
     question = session["questions"][0]
+    answer_list = questions[0].get_answers()
 
     options = create_option_list(question)
 
     context = {
         "question": question,
-        "options": options
+        "options": options,
+        "question_num": 0,
+        "num_answ": len(answer_list)
     }
     session["counting"] = 0
     return render_template("question.html", **context)
@@ -55,10 +61,15 @@ def create_option_list(question):
 
 @main.route("/explanation", methods=['GET', 'POST'])
 def explanation():
+
     user_answers = request.form.getlist("answer")
     current_question = session["questions"][session["counting"]]
     question_object = Question.query.get(current_question["id"])
     answer_list = question_object.get_answers()
+
+    user_answers_as_string = get_user_answers(user_answers, question_object)
+
+    options = create_option_list(current_question)
 
     correct_answers = get_list_string(question_object)
 
@@ -67,10 +78,29 @@ def explanation():
 
     context = {
         "explanation": question_object.explanation,
-        "correct_answers": correct_answers
+        "correct_answers": correct_answers,
+        "options": options,
+        "user_answers": user_answers_as_string
     }
 
     return render_template("explanation.html", **context)
+
+def get_user_answers(user_answers, question_object):
+    list = []
+    if "0" in user_answers:
+        list.append(question_object.option1)
+    if "1" in user_answers:
+        list.append(question_object.option2)
+    if "2" in user_answers:
+        list.append(question_object.option3)
+    if "3" in user_answers:
+        list.append(question_object.option4)
+    if "4" in user_answers:
+        list.append(question_object.option5)
+    if "5" in user_answers:
+        list.append(question_object.option6)
+
+    return list
 
 def get_list_string(question_object):
     answer_list = question_object.get_answers()
@@ -100,14 +130,19 @@ def nextQuestion():
         return redirect(url_for('main.endQuiz'))
 
     session["counting"] += 1
+    current_question = session["questions"][session["counting"]]
+    question_object = Question.query.get(current_question["id"])
+    answer_list = question_object.get_answers()
 
-    question = session["questions"][session["counting"]]
+    next_question = session["questions"][session["counting"]]
 
-    options = create_option_list(question)
+    options = create_option_list(next_question)
 
     context = {
-        "question": question,
-        "options": options
+        "question": next_question,
+        "options": options,
+        "question_num": session["counting"],
+        "num_answ": len(answer_list)
     }
 
     return render_template("question.html", **context)

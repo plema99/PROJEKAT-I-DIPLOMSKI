@@ -3,6 +3,8 @@
   box-sizing: border-box;
 }
 
+
+
 body {
     background-image: url("https://cutewallpaper.org/26/any-question-wallpaper-hd/free-download-question-background-slow-loop-stock-video-11520251-hd-stock-footage-1920x1080-for-your-desktop-mobile-amp-tablet-explore-46-wallpaper-questions-yellow-wallpaper-questions-and-answers-question-mark.jpeg");
     background-attachment: fixed;
@@ -15,6 +17,11 @@ body {
 	padding: 5rem;
 }
 
+p.error{
+    color:red;
+    font-size: 40px;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
 
 h1{
     text-align: center;
@@ -132,3 +139,4 @@ h2 {
 .select-box .option .radio {
   display: none;
 }
+
