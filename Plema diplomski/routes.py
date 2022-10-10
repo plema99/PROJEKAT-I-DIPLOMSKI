@@ -77,6 +77,7 @@ def explanation():
         session["correctAnswers"] += 1
 
     context = {
+        "current_question": current_question,
         "explanation": question_object.explanation,
         "correct_answers": correct_answers,
         "options": options,

@@ -1,33 +1,25 @@
-<link href= "{{ url_for('static',filename='styles/question.css') }}" rel="stylesheet" type="text/css" />
+
+  <link href= "{{ url_for('static',filename='styles/question.css') }}" rel="stylesheet" type="text/css" />
   <body>
     <div class="container">
       <h1>Pitanje {{question_num + 1}}/{{session["questions"]|length}}</h1>
       <h1>{{question_num + 1}}) {{ question.text }} </h1>
         {% if question.image != '' %}
-     <img src="{{ url_for('static', filename = 'styles/question images/' + question.image) }}" />
+     <img src="{{ url_for('static', filename = 'styles/question images/' + question.image) }}" width="200" height="200" />
         {% endif %}
-        {% if num_answ != 1 %}
-        <h1>(Vise tacnih odgovora)</h1>
-        {% endif %}
-      <form action="{{ url_for('main.explanation') }}" method="post">
+        <form action="{{ url_for('main.explanation') }}" method="post">
       {% for item in options %}
             <tr>
                 <td>
                     <div class="group">
-                        {% if num_answ == 1 %}
-                         <input type="radio" id="{{item}}" style="display:none" name="answer" value="{{loop.index0}}"/>
-                        {% else%}
-                             <input type="checkbox" id="{{item}}"  name="answer" value="{{loop.index0}}"/>
-                        {% endif %}
+                        <input type="checkbox" id="{{item}}" name="answer" value="{{loop.index0}}"/>
                         <label for="{{item}}">{{item}}</label>
-
                     </div>
                 </td>
             </tr>
       {% endfor %}
       <div>
         <input type="submit" class="submit" value="Odgovori"/>
-
       </div>
       </form>
     </div>
