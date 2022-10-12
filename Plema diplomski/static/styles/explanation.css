@@ -71,15 +71,12 @@
     position: absolute;
     left: -44px;
     top: 2px;
-
-
-  label::after {
-    content: "";
-    border: 2px solid #27ae60;
-    width: 24px;
-    height: 24px;
-    position: absolute;
-    left: -42px;
-    top: 4px;
-    border-radius: 50%;
   }
+
+  label.comment_for_option{
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+
+

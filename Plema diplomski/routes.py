@@ -66,6 +66,7 @@ def explanation():
     current_question = session["questions"][session["counting"]]
     question_object = Question.query.get(current_question["id"])
     answer_list = question_object.get_answers()
+    opt_com_list = question_object.get_optcomm()
 
     user_answers_as_string = get_user_answers(user_answers, question_object)
 
@@ -81,7 +82,8 @@ def explanation():
         "explanation": question_object.explanation,
         "correct_answers": correct_answers,
         "options": options,
-        "user_answers": user_answers_as_string
+        "user_answers": user_answers_as_string,
+        "opt_com_list": opt_com_list
     }
 
     return render_template("explanation.html", **context)

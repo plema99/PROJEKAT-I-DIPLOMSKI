@@ -17,7 +17,13 @@ class Question(db.Model):
     option6 = db.Column(db.String(50))
     answers = db.Column(db.String(50))
     image = db.Column(db.String(50), default = '')
-    #backref dodajem novu kolonu u tabelu Option
+    opt1com = db.Column(db.String(50))
+    opt2com = db.Column(db.String(50))
+    opt3com = db.Column(db.String(50))
+    opt4com = db.Column(db.String(50))
+    opt5com = db.Column(db.String(50))
+    opt6com = db.Column(db.String(50))
+
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
@@ -27,6 +33,10 @@ class Question(db.Model):
         answer_list = self.answers
         answer_list = answer_list.split(",")
         return answer_list
+
+    def get_optcomm(self):
+        opt_com_list = [self.opt1com, self.opt2com, self.opt3com, self.opt4com, self.opt5com, self.opt6com]
+        return opt_com_list
 
 
 class QuestionSchema(ma.Schema):
@@ -43,3 +53,9 @@ class QuestionSchema(ma.Schema):
     option6 = fields.Str()
     answers = fields.Str()
     image = fields.Str()
+    opt1com = fields.Str()
+    opt2com = fields.Str()
+    opt3com = fields.Str()
+    opt4com = fields.Str()
+    opt5com = fields.Str()
+    opt6com = fields.Str()
