@@ -2,6 +2,7 @@ import json
 from jsonpickle import encode
 from flask import Blueprint, render_template, redirect, url_for, request, session, jsonify
 from model.models import Question, QuestionSchema
+from sqlalchemy.sql.expression import func
 from config import db
 
 
@@ -18,15 +19,9 @@ def create():
     db.create_all()
     return render_template("startup.html")
 
-@main.route("/startQuiz",  methods=['POST'])
+@main.route("/startQuizRandomQuestions",  methods=['POST'])
 def startQuiz():
-
-    if "category" not in request.form:
-        error_msg = "Molimo vas odaberite oblast"
-        return render_template("startup.html", errormsg=error_msg)
-
-    category = request.form["category"]
-    questions = Question.query.filter_by(category=category)
+    questions = Question.query.order_by(func.random()).limit(12)
     schema = QuestionSchema(many=True)
 
     session["correctAnswers"] = 0
@@ -45,6 +40,7 @@ def startQuiz():
     }
     session["counting"] = 0
     return render_template("question.html", **context)
+
 
 def create_option_list(question):
     options = [question["option1"], question["option2"]]
