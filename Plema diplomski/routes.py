@@ -18,7 +18,6 @@ def index():
 def create():
     db.create_all()
     return render_template("startup.html")
-
 @main.route("/startQuizRandomQuestions",  methods=['POST'])
 def startQuiz():
     questions = Question.query.order_by(func.random()).limit(12)
@@ -195,7 +194,4 @@ def add():
         db.session.add(question)
         db.session.commit()
         return render_template("adding.html")
-
-
-
 

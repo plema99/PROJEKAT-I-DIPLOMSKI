@@ -5,7 +5,7 @@
       <h1>Pitanje {{question_num + 1}}/{{session["questions"]|length}}</h1>
       <h1>{{question_num + 1}}) {{ question.text }} </h1>
         {% if question.image != '' %}
-     <img src="{{ url_for('static', filename = 'styles/question images/' + question.image) }}" width="200" height="200" />
+     <img src="{{ url_for('static', filename = 'styles/question images/' + question.image) }}" width="800" height="500" />
         {% endif %}
         <form action="{{ url_for('main.explanation') }}" method="post">
       {% for item in options %}

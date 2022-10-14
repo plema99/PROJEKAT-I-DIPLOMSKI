@@ -2,6 +2,9 @@
   <body>
     <div class="container">
         <h1>Pitanje: {{ current_question.text}}</h1>
+        {% if current_question.image != '' %}
+     <img src="{{ url_for('static', filename = 'styles/question images/' + current_question.image) }}" width="800" height="500" />
+        {% endif %}
       <h1>{{ explanation }} </h1><br> <br>
       <h1> Odgovori :</h1>
       <form action="{{ url_for('main.nextQuestion') }}" method="post">
